@@ -8,6 +8,7 @@ import com.bitcoding.helper.entity.common.PageRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Joiner;
 import io.jsonwebtoken.Claims;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.request.RequestAttributes;
@@ -287,5 +288,31 @@ public class CommonUtils {
      */
     public static String uuid() {
         return UUID.randomUUID().toString().replaceAll("-", "");
+    }
+
+    public static String queryToSql(List<FieldQuery> queries) {
+        StringBuilder sb = new StringBuilder();
+        if (queries.size() > 0) {
+            sb.append("where 1=1 ");
+            for (FieldQuery fieldQuery : queries) {
+                if (fieldQuery.getIsAnd()) {
+                    sb.append(" and ");
+                } else {
+                    sb.append(" or ");
+                }
+                sb.append(fieldQuery.getKey());
+                sb.append(fieldQuery.getOption());
+                Object value = fieldQuery.getValue();
+                if (fieldQuery.getOption().equals("in")) {
+                    List<String> list = (List<String>) fieldQuery.getValue();
+                    value = "(" + Joiner.on(",").join(list) + ")";
+                }
+                sb.append(value);
+            }
+        }
+        else {
+            throw new RuntimeException("条件不能为空");
+        }
+        return sb.toString();
     }
 }

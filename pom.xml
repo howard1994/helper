@@ -18,7 +18,7 @@
     </parent>
     <groupId>com.bitcoding</groupId>
     <artifactId>helper</artifactId>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <name>helper</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -118,10 +118,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <commandlineArguments>-Xlint:unchecked</commandlineArguments>
                     <skip>true</skip>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 

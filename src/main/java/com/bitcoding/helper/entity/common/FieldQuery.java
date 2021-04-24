@@ -1,5 +1,6 @@
 package com.bitcoding.helper.entity.common;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -49,17 +50,21 @@ public class FieldQuery implements Serializable {
 
     }
 
+    @ApiModelProperty(name = "字段名", example = "id")
     private String key;
     /**
      * 值
      */
+    @ApiModelProperty(name = "字段值", example = "lq123329")
     private Object value;
     /**
      * 操作符 > = < >= <= like
      */
+    @ApiModelProperty(name = "操作符", example = "eq")
     private String option;
     /**
      * and || or
      */
+    @ApiModelProperty(name = "and条件||or条件", example = "true")
     private Boolean isAnd;
 }

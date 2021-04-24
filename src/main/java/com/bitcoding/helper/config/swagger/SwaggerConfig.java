@@ -56,7 +56,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         List<SecurityContext> securityContexts = new ArrayList<>();
         securityContexts.add(SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.any()).build());
+                .build());
         return securityContexts;
     }
 
@@ -73,12 +73,6 @@ public class SwaggerConfig implements WebMvcConfigurer {
         List<SecurityScheme> securitySchemes = new ArrayList<>();
         securitySchemes.add(new ApiKey("Authorization", "Authorization", "header"));
         return securitySchemes;
-    }
-
-    private List<Response> getGlobalResponseMessage() {
-        List<Response> responseList = new ArrayList<>();
-        responseList.add(new ResponseBuilder().code("404").description("找不到资源").build());
-        return responseList;
     }
 
     private ApiInfo apiInfo() {

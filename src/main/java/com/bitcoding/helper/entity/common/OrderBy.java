@@ -1,5 +1,6 @@
 package com.bitcoding.helper.entity.common;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,8 +15,9 @@ import java.util.List;
  */
 @Data
 public class OrderBy implements Serializable {
+    @ApiModelProperty(name = "字段名", example ="id")
     private String by;
-
+    @ApiModelProperty(name = "排序:正序倒序", example ="desc")
     private String order;
 
     /**
