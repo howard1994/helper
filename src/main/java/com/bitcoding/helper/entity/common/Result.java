@@ -3,6 +3,7 @@ package com.bitcoding.helper.entity.common;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.bitcoding.helper.CommonUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * create by: liumeng
@@ -17,6 +18,7 @@ public class Result<T> {
     private Boolean success;
     private Long count;
     @JSONField(name = "detail")
+    @JsonProperty(value = "detail")
     private String message;
     private T results;
 
